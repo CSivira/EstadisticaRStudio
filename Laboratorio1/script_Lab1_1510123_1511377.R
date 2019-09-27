@@ -1,4 +1,4 @@
-#Laboratorio 0. Estadística descriptiva
+#Laboratorio 1. Estadística descriptiva
 #Estudiantes:
 # Jose Barrera  15-10123
 # Carlos Sivira 15-11377
