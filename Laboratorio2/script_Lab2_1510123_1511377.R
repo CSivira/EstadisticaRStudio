@@ -3,7 +3,7 @@
 # José Barrera  15-10123
 # Carlos Sivira 15-11377
 
-par(mfrow=c(2,2))
+par(mfrow=c(1,3))
 
 ####################################################################
 #Pregunta 1
@@ -24,14 +24,14 @@ sd(data1)
 boxplot(data1, 
         ylab = 'Horas', 
         main='Horas de Sueño', 
-        col = 'green')
+        col = 'chocolate1')
 
 hist(data1, 
         ylab = 'Horas', 
         main='Horas de Sueño', 
-        col = 'green')
+        col = 'aquamarine2')
 
-qqnorm(data1)
+qqnorm(data1, main='Horas de Sueño')
 qqline(data1)
 
 #Calculamos el intervalo de confianza
