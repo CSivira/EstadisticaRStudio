@@ -54,19 +54,22 @@ sd(dataMatrix[, 1]) / mean(dataMatrix[,1])
 sd(dataMatrix[, 2]) / mean(dataMatrix[,2])
 #Muestra de las graficas
 par(mfrow=c(3,2))
-hist(dataMatrix, ylab = 'Cantidad de ciclistas', main='Tiempos por ciclisas ambos métodos', col = 'green')
-hist(dataMatrix[,1], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclisas Método I', col = 'green')
-hist(dataMatrix[,2], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclisas Método II', col = 'green')
-boxplot(dataMatrix, ylab = 'Tiempos', main='Tiempos por ciclisas en ambos métodos', col = 'green')
+boxplot(dataMatrix, ylab = 'Tiempos', main='Tiempos por ciclistas en ambos métodos', col = 'green')
+hist(dataMatrix, ylab = 'Cantidad de ciclistas', main='Tiempos por ciclistas ambos métodos', col = 'green')
+hist(dataMatrix[,1], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclistas Método I', col = 'green')
+hist(dataMatrix[,2], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclistas Método II', col = 'green')
 qqnorm(dataMatrix[,1])
 qqline(dataMatrix[,1])#Metodo 1
 qqnorm(dataMatrix[,2])
 qqline(dataMatrix[,2])#Metodo 2
 
 #------------------------------Seccion 2------------------------------
+#Se verifica si las varianzas pueden ser iguales
 var.test(dataMatrix[,1], dataMatrix[,2])$conf.int
-t.test (dataMatrix[,1], dataMatrix[,2], var.equal = T, conf.level = 0.95 )$conf.int
+#Se calcula el intervalo de confianza
+t.test (dataMatrix[,1], dataMatrix[,2], var.equal = TRUE, conf.level = 0.95 )$conf.int
 
 #------------------------------Seccion 3------------------------------
+#Calculo de la diferencia de las varianzas.
 var(dataMatrix[,1]) - var(dataMatrix[,2])
 ####################################################################
