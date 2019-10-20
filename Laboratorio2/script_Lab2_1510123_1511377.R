@@ -3,12 +3,40 @@
 # José Barrera  15-10123
 # Carlos Sivira 15-11377
 
+par(mfrow=c(2,2))
+
 ####################################################################
 #Pregunta 1
 
-data1 <- c(6.9, 7.6, 6.5, 6.2, 5.3, 7.8, 7.0, 5.5, 7.6, 6.7, 7.3, 6.6, 7.1, 6.9, 6.0, 6.8, 6.5, 7.2, 5.8, 8.6, 7.6, 7.1, 6.0, 7.2, 7.7)
+#Almacenamos los datos a analizar
+data1 <- c(6.9, 7.6, 6.5, 6.2, 5.3,
+           7.8, 7.0, 5.5, 7.6, 6.7,
+           7.3, 6.6, 7.1, 6.9, 6.0,
+           6.8, 6.5, 7.2, 5.8, 8.6,
+           7.6, 7.1, 6.0, 7.2, 7.7)
 
+#Datos para el análisis descriptivo
+summary(data1)
 
+sd(data1)
+
+#Graficamos para apoyar nuestro análisis
+boxplot(data1, 
+        ylab = 'Horas', 
+        main='Horas de Sueño', 
+        col = 'green')
+
+hist(data1, 
+        ylab = 'Horas', 
+        main='Horas de Sueño', 
+        col = 'green')
+
+qqnorm(data1)
+qqline(data1)
+
+#Calculamos el intervalo de confianza
+#de 78% para la media
+t.test(data1, conf.level = 0.78)$conf.int
 
 ####################################################################
 #Pregunta 2
