@@ -59,9 +59,9 @@ boxplot(dataMatrix, ylab = 'Tiempos', main='Tiempos por ciclistas en ambos méto
 hist(dataMatrix, ylab = 'Cantidad de ciclistas', main='Tiempos por ciclistas ambos métodos', col = 'green')
 hist(dataMatrix[,1], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclistas Método I', col = 'green')
 hist(dataMatrix[,2], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclistas Método II', col = 'green')
-qqnorm(dataMatrix[,1], main='Normal Q-Q Plot Método 1')
+qqnorm(dataMatrix[,1], main='Tiempos por ciclistas Método I')
 qqline(dataMatrix[,1])#Metodo 1
-qqnorm(dataMatrix[,2], main='Normal Q-Q Plot Método 2')
+qqnorm(dataMatrix[,2], main='Tiempos por ciclistas Método II')
 qqline(dataMatrix[,2])#Metodo 2
 
 #------------------------------Seccion 2------------------------------
