@@ -55,7 +55,7 @@ sd(dataMatrix[, 1]) / mean(dataMatrix[,1])
 sd(dataMatrix[, 2]) / mean(dataMatrix[,2])
 #Muestra de las graficas
 par(mfrow=c(3,2))
-boxplot(dataMatrix, ylab = 'Tiempos', main='Tiempos por ciclistas en ambos métodos', col = 'green')
+boxplot(dataMatrix, ylab = 'Tiempos', main='Tiempos por ciclistas ambos métodos', col = 'green')
 hist(dataMatrix, ylab = 'Cantidad de ciclistas', main='Tiempos por ciclistas ambos métodos', col = 'green')
 hist(dataMatrix[,1], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclistas Método I', col = 'green')
 hist(dataMatrix[,2], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclistas Método II', col = 'green')
