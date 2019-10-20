@@ -18,7 +18,8 @@ data1 <- c(6.9, 7.6, 6.5, 6.2, 5.3,
 #Datos para el análisis descriptivo
 summary(data1)
 
-sd(data1)
+#Calculo del coeficiente de variacion
+sd(data1) / mean(data1)
 
 #Graficamos para apoyar nuestro análisis
 boxplot(data1, 
