@@ -53,14 +53,15 @@ summary(dataMatrix)
 sd(dataMatrix[, 1]) / mean(dataMatrix[,1])
 sd(dataMatrix[, 2]) / mean(dataMatrix[,2])
 #Muestra de las graficas
-#par(mfrow=c(3,2))
+par(mfrow=c(3,2))
+hist(dataMatrix, ylab = 'Cantidad de ciclistas', main='Tiempos por ciclisas ambos métodos', col = 'green')
 hist(dataMatrix[,1], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclisas Método I', col = 'green')
-#hist(dataMatrix[,2], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclisas Método II', col = 'green')
-#qqnorm(dataMatrix[,1])
-#qqline(dataMatrix[,1])#Metodo 1
-#qqnorm(dataMatrix[,2])
-#qqline(dataMatrix[,2])#Metodo 2
-#boxplot(dataMatrix, ylab = 'Tiempos', main='Tiempos por ciclisas en ambos métodos', col = 'green')
+hist(dataMatrix[,2], ylab = 'Cantidad de ciclistas', main='Tiempos por ciclisas Método II', col = 'green')
+boxplot(dataMatrix, ylab = 'Tiempos', main='Tiempos por ciclisas en ambos métodos', col = 'green')
+qqnorm(dataMatrix[,1])
+qqline(dataMatrix[,1])#Metodo 1
+qqnorm(dataMatrix[,2])
+qqline(dataMatrix[,2])#Metodo 2
 
 #------------------------------Seccion 2------------------------------
 var.test(dataMatrix[,1], dataMatrix[,2])$conf.int
