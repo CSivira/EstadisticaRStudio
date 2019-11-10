@@ -1,4 +1,4 @@
-#Proyecto. Estadística descriptiva
+#Proyecto. Estad?stica descriptiva
 #Estudiantes:
 # Jose Barrera  15-10123
 # Carlos Sivira 15-11377
@@ -7,7 +7,7 @@
 ####################################################################
 #Cargando el archivo del proyecto
 sales = read.table("datosproy.txt", header = TRUE)
-
+sales[,]
 ####################################################################
 #Pregunta 1
 
@@ -48,7 +48,7 @@ sales_per_region = sales$ventas[sales$Region == 1]
 m0 = 150
 #La hipotesis alternativa sera que m0 es mayor a 150
 
-#Se obtiene el tamaño de la muestra (grande 49>30)
+#Se obtiene el tama?o de la muestra (grande 49>30)
 n = length(sales_per_region)
 #Se obtiene la media de la muestra
 sample_mean = mean(sales_per_region)
