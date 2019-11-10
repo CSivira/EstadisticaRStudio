@@ -13,5 +13,14 @@ Nuevo  <- c(276, 222, 310, 338, 200, 302, 317, 260, 320, 312, 334, 265)
 var.test(Actual, Nuevo)$conf.int
 #------------------------------Seccion 2------------------------------
 #Se cálcula el intervalo de confianza
-t.test(Actual, Nuevo, paired=T, alternative = "two.sided")
+t.test(Actual, Nuevo, paired=T, alternative = "greater"))
+####################################################################
+#Pregunta 3
+Oscura <- c(31, 26, 18)
+Clara  <- c(19, 40, 31)
+Ligera <- c(10, 15, 22)
+
+matriz <- cbind(Oscura, Clara, Ligera)
+
+chisq.test(matriz)
 ####################################################################
