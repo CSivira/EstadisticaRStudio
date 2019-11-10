@@ -12,7 +12,7 @@ Nuevo  <- c(276, 222, 310, 338, 200, 302, 317, 260, 320, 312, 334, 265)
 #Se verifica si las varianzas pueden ser iguales
 var.test(Actual, Nuevo)$conf.int
 #------------------------------Seccion 2------------------------------
-#Se cálcula el intervalo de confianza
+#Se cálcula la prueba de hipotesis
 t.test (Actual, Nuevo, var.equal = TRUE, conf.level = 0.93, alternative = "greater")
 ####################################################################
 #Pregunta 2
@@ -34,12 +34,6 @@ chi_square <- sum((fi - en)^2 / en)
 chi_value <- qchisq(1 - alpha, k - 1 - r)
 #Se obtiene el p-valor asociado
 p_value <- pchisq(chi_square, k - 1 - r)
-#Se muestra el valor del estadistico chi cuadrado
-chi_square
-#Se muestra el valor del chi para el alpha dado
-chi_value
-#Se muerta el resultado obtenido del p-valor asociado al estadistico chi cuadrado
-p_value
 ####################################################################
 #Pregunta 3
 Oscura <- c(31, 26, 18)
