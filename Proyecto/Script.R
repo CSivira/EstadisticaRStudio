@@ -7,7 +7,6 @@
 ####################################################################
 #Cargando el archivo del proyecto
 sales = read.table("datosproy.txt", header = TRUE)
-sales[,]
 ####################################################################
 #Pregunta 1
 
@@ -33,7 +32,49 @@ t.test(sales_per_region, conf.level = 0.95)$conf.int
 ####################################################################
 #Pregunta 3
 
+#1era posible variable independiente: facebook
+ml1 = lm(sales$ventas ~ sales$facebook)
+plot(sales$facebook, sales$ventas, main = "Ventas en función de la publicidad en Facebook", xlab = "Publicidad en Facebook", ylab = "Ventas")
+abline(ml1)
+summary(ml1)
+plot(ml1, main = "Modelo 2.1")
 
+sales$facebook
+
+#2da posible variable independiente: periodico
+ml2 = lm(sales$ventas ~ sales$periodico)
+plot(sales$periodico, sales$ventas, main = "Ventas en función de la publicidad en Periodico", xlab = "Publicidad en Periodico", ylab = "Ventas")
+abline(ml2)
+summary(ml2)
+plot(ml2, main = "Modelo 2.2")
+
+#3era posible variable independiente: instagram
+ml3 = lm(sales$ventas ~ sales$instagram)
+plot(sales$instagram, sales$ventas, main = "Ventas en función de la publicidad en Instagram", xlab = "Publicidad en Instagram", ylab = "Ventas")
+abline(ml3)
+summary(ml3)
+plot(ml3, main = "Modelo 2.3")
+
+#4ta posible variable independiente: tv
+ml4 = lm(sales$ventas ~ sales$tv)
+plot(sales$tv, sales$ventas, main = "Ventas en función de la publicidad en TV", xlab = "Publicidad en Television", ylab = "Ventas")
+abline(ml4)
+summary(ml4)
+plot(ml4, main = "Modelo 2.4")
+
+#5ta posible variable independiente: ebay
+ml5 = lm(sales$ventas ~ sales$ebay)
+plot(sales$ebay, sales$ventas, main = "Ventas en función de la publicidad en Ebay", xlab = "Publicidad en Ebay", ylab = "Ventas")
+abline(ml5)
+summary(ml5)
+plot(ml5, main = "Modelo 2.5")
+
+#6ta posible variable independiente: region
+ml6 = lm(sales$ventas ~ sales$Region)
+plot(sales$Region, sales$ventas, main = "Ventas en función de la Region", xlab = "Publicidad en FB", ylab = "Ventas")
+abline(ml6)
+summary(ml6)
+plot(ml6, main = "Modelo 2.6")
 ####################################################################
 #Pregunta 4
 
@@ -67,5 +108,33 @@ standard_deviation = sd(sales_per_region)
 ####################################################################
 #Pregunta 6
 
+pesosNuevos <- data.frame(peso = c(43, 55, 70, 90, 65))
+puntos<- data.frame(peso = seq(min(peso), max(peso), by = 0.5)) #Necesitamos para las bandas de confianza/predicción porque si no, se ven horribles y no se entiende nada
+ml1 <- lm(estatura~peso)
 
+#Fuente de como calcular el intervalo de predicción y graficar las bandas
+#https://rpubs.com/joser/RegresionSimple
+
+#Valores predecidos para los puntos dados
+predict(ml1, pesosNuevos, interval = "predict")
+
+#Graficamos el modelo y las bandas de confianza/predicción para un 95% de confianza
+plot(peso, estatura, xlab = "Peso de los estudiantes", ylab = "Estatura de los estudiantes", main = "Estatura de los estudiantes en función del peso")
+abline(ml1)
+
+#Graficamos los intervalos de predicción
+ip <- predict(ml1, puntos, interval = "predict")
+lines(puntos$peso, ip[,2], lty = 2, col = "dodgerblue")
+lines(puntos$peso, ip[,3], lty = 2, col = "dodgerblue") 
+
+#Graficamos los intervalos de confianza
+ic <- predict(ml1, puntos, interval = "confidence")
+lines(puntos$peso, ic[,2], lty = 2)
+lines(puntos$peso, ic[,3], lty = 2)
+####################################################################
+#Pregunta 6
+####################################################################
+#Pregunta 7
+####################################################################
+#Pregunta 8
 ####################################################################
