@@ -1,8 +1,8 @@
-#Proyecto. Estad?stica descriptiva
+#Proyecto Final.
 #Estudiantes:
-# Jose Barrera  15-10123
-# Carlos Sivira 15-11377
-# Miguel
+# Miguel Colorado 14-10237
+# Jose Barrera    15-10123
+# Carlos Sivira   15-11377
 
 ####################################################################
 #Cargando el archivo del proyecto
