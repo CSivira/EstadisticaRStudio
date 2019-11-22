@@ -9,7 +9,7 @@ grades = read.table("calificaciones.txt", header = TRUE)
 grades2 = read.table("calificaciones_prediccion.txt", header = TRUE)
 ####################################################################
 #Pregunta 1
-
+summary(grades)
 # E6
 E6 = grades$E6
 summary(E6)
