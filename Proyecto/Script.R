@@ -1,5 +1,5 @@
-#Proyecto Final.
-#Estudiantes:
+# Proyecto Final.
+# Estudiantes:
 # Miguel Colorado 14-10237
 # Jose Barrera    15-10123
 # Carlos Sivira   15-11377
@@ -9,6 +9,62 @@
 sales = read.table("datosproy.txt", header = TRUE)
 ####################################################################
 #Pregunta 1
+
+# Ventas
+ventas = sales$ventas
+summary(ventas)
+sd(ventas)
+boxplot(ventas,main="Caja de Ventas",ylab="Ventas")
+
+# Facebook
+facebook = sales$facebook
+summary(facebook)
+sd(facebook)
+boxplot(facebook,main="Caja de Facebook",ylab="Facebook")
+
+# Periodico
+periodico = sales$periodico
+summary(periodico)
+sd(periodico)
+boxplot(periodico,main="Caja de Periodico",ylab="Periodico")
+
+# Instagram
+instagram = sales$instagram
+summary(instagram)
+sd(instagram)
+boxplot(instagram,main="Caja de Instagram",ylab="Instagram")
+
+# Tv
+tv = sales$tv
+summary(tv)
+sd(tv)
+boxplot(tv,main="Caja de Tv",ylab="Tv")
+
+# Ebay
+ebay = sales$ebay
+summary(ebay)
+sd(ebay)
+boxplot(ebay,main="Caja de Tv",ylab="Ebay")
+
+# Region
+Region = sales$Region
+summary(Region)
+sd(Region)
+boxplot(Region,main="Caja de Region",ylab="Region")
+
+# Histogramas
+hist(ventas,main="Histograma de Ventas",ylab="Frecuencia",xlab="Ventas")
+hist(facebook,main="Histograma de Facebook",ylab="Frecuencia",xlab="Facebook")
+hist(Periodico,main="Histograma de Periodico",ylab="Frecuencia",xlab="Periodico")
+hist(instagram,main="Histograma de Instagram",ylab="Frecuencia",xlab="Instagram")
+hist(tv,main="Histograma de Tv",ylab="Frecuencia",xlab="Tv")
+hist(ebay,main="Histograma de Ebay",ylab="Frecuencia",xlab="Ebay")
+hist(Region,main="Histograma de Region",ylab="Frecuencia",xlab="Region")
+
+# Matriz de Correlacion
+variables_cuant = sales[1:7]
+sales.cor = cor(variables_cuant)
+corrplot(datos.cor)
 
 ####################################################################
 #Pregunta 2
