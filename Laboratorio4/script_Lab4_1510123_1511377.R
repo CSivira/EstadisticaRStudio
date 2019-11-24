@@ -78,7 +78,7 @@ sd = c(format(round(sd(E6), 2), nsmall = 2),
 matrix = rbind(s,sd)
 matrix
 #Es generada la grafica de todas las variables
-boxplot(dat~fact,main="Caja de calificaciones",ylab="Resultados", xlab = "Exámenes")
+boxplot(dat~fact,main="Caja de calificaciones",ylab="Resultados", xlab = "Examenes")
 
 #Se generan los histogramas respectivos
 hist(E6,main="Histograma de E6",ylab="Frecuencia",xlab="E6")
@@ -165,7 +165,7 @@ fact = factor(fac)
 tapply(dat, fact, mean)
 
 #Se genera el diagrama de caja de los metodos
-boxplot(dat~fact,main="Caja de métodos",ylab="Tiempos", xlab = "Métodos")
+boxplot(dat~fact,main="Caja de metodos",ylab="Tiempos", xlab = "Metodos")
 
 #Se crea el modelo lineal
 mod.lm = lm(dat~fact)
