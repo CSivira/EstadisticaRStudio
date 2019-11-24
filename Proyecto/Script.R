@@ -21,7 +21,7 @@ boxplot(ventas,main="Caja de Ventas",ylab="Ventas")
 # Facebook
 facebook = sales$facebook
 summary(facebook)
-sd(facebook)
+sd(facebook)    
 boxplot(facebook,main="Caja de Facebook",ylab="Facebook")
 
 # Periodico
@@ -53,6 +53,11 @@ Region = sales$Region
 summary(Region)
 sd(Region)
 boxplot(Region,main="Caja de Region",ylab="Region")
+
+#Desviaciones estandar
+sd = c(sd(ventas), sd(facebook), sd(periodico), sd(instagram), sd(tv), sd(ebay), sd(Region));
+
+#Coeficientes de variacion
 
 # Histogramas
 hist(ventas,main="Histograma de Ventas",ylab="Frecuencia",xlab="Ventas")
