@@ -8,8 +8,8 @@
 grades = read.table("calificaciones.txt", header = TRUE)
 grades2 = read.table("calificaciones_prediccion.txt", header = TRUE)
 ####################################################################
+library("corrplot")
 #Pregunta 1
-summary(grades)
 # E6
 E6 = grades$E6
 summary(E6)
@@ -52,6 +52,24 @@ summary(Y)
 sd(Y)
 boxplot(Y,main="Caja de Y",ylab="Y")
 
+fac = c(replicate(60,"E6"), replicate(60,"E5"), replicate(60,"E4"), replicate(60,"E3"), replicate(60,"E2"), replicate(60,"E1"), replicate(60,"Y"))
+fact = factor(fac)
+
+dat = c(E6, E5, E4, E3, E2, E1, Y)
+
+s = summary(grades)
+sd = c(format(round(sd(E6), 2), nsmall = 2),
+      format(round(sd(E5), 2), nsmall = 2),
+      format(round(sd(E4), 2), nsmall = 2),
+      format(round(sd(E3), 2), nsmall = 2),
+      format(round(sd(E2), 2), nsmall = 2),
+      format(round(sd(E1), 2), nsmall = 2),
+      format(round(sd(Y), 2), nsmall = 2))
+
+matrix = rbind(s,sd)
+matrix
+boxplot(dat~fact,main="Caja de calificaciones",ylab="Resultados", xlab = "Exámenes")
+
 hist(E6,main="Histograma de E6",ylab="Frecuencia",xlab="E6")
 hist(E5,main="Histograma de E5",ylab="Frecuencia",xlab="E5")
 hist(E4,main="Histograma de E4",ylab="Frecuencia",xlab="E4")
@@ -64,8 +82,9 @@ hist(Y,main="Histograma de Y",ylab="Frecuencia",xlab="Y")
 variables_cuant = grades[1:7]
 grades.cor = cor(variables_cuant)
 cor(grades.cor)
-corrplot(grades.cor)
 
+corrplot(grades.cor)
+corrplot(cor(grades.cor), method="color", tl.pos="n")
 # Grafico de Dispersion
 pairs(grades)
 ###############Modelos Simples#################
@@ -96,8 +115,9 @@ modelo2 = lm(Y~E6+E5+E3+E2+E1)
 summary(modelo2)
 predict(modelo2, grades2, interval = "prediction")
 mean(modelo2$residuals)
-boxplot(modelo2$residuals,main="Caja de residuales",ylab="modelo2")
-hist(modelo2$residual,main="Histograma de residuales",ylab="Frecuencia",xlab="modelo2")
+par(mfrow = c(1,2))
+boxplot(modelo2$residuals,main="Caja de residuales",ylab="Valores")
+hist(modelo2$residual,main="Histograma de residuales",ylab="Frecuencia",xlab="Valores")
 plot(modelo2, main = "Y~E6+E5+E3+E2+E1")
 
 modelo3 = lm(Y~E6+E5+E3+E1)
@@ -107,7 +127,7 @@ modelo4 = lm(Y~E6+E3+E1)
 summary(modelo4)
 
 ####################################################################
-#Pregunta 1
+#Pregunta 2
 m1 = c(15,16,14,15,17)
 m2 = c(14,13,15,16,14)
 m3 = c(13,12,11,14,11)
@@ -118,7 +138,7 @@ fac = c(replicate(5,"m1"), replicate(5,"m2"), replicate(5,"m3"))
 fact = factor(fac)
 tapply(dat, fact, mean)
 
-boxplot(dat~fact)
+boxplot(dat~fact,main="Caja de métodos",ylab="Tiempos", xlab = "Métodos")
 mod.lm = lm(dat~fact)
 anova(mod.lm)
 pairwise.t.test(dat,fact)
