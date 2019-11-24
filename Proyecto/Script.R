@@ -10,6 +10,8 @@ sales = read.table("datosproy.txt", header = TRUE)
 ####################################################################
 #Pregunta 1
 
+summary(sales)
+
 # Ventas
 ventas = sales$ventas
 summary(ventas)
@@ -95,8 +97,6 @@ abline(ml1)
 summary(ml1)
 plot(ml1, main = "Modelo 2.1")
 
-sales$facebook
-
 #2da posible variable independiente: periodico
 ml2 = lm(sales$ventas ~ sales$periodico)
 plot(sales$periodico, sales$ventas, main = "Ventas en función de la publicidad en Periodico", xlab = "Publicidad en Periodico", ylab = "Ventas")
@@ -133,7 +133,21 @@ summary(ml6)
 plot(ml6, main = "Modelo 2.6")
 ####################################################################
 #Pregunta 4
+mlm1 = lm(sales$ventas ~ sales$facebook + sales$periodico + sales$instagram + sales$tv + sales$ebay)
+summary(mlm1)
+#plot(mlm1, main = "Modelo multiple 1")
 
+mlm2 = lm(sales$ventas ~ sales$facebook + sales$periodico + sales$instagram + sales$tv)
+summary(mlm2)
+#plot(mlm2, main = "Modelo multiple 2")
+
+mlm3 = lm(sales$ventas ~ sales$facebook + sales$periodico + sales$instagram)
+summary(mlm3)
+#plot(mlm3, main = "Modelo multiple 3")
+
+mlm4 = lm(sales$ventas ~ sales$facebook + sales$instagram)
+summary(mlm4)
+#plot(mlm4, main = "Modelo multiple 4")
 
 ####################################################################
 #Pregunta 5
@@ -168,9 +182,6 @@ pesosNuevos <- data.frame(peso = c(43, 55, 70, 90, 65))
 puntos<- data.frame(peso = seq(min(peso), max(peso), by = 0.5)) #Necesitamos para las bandas de confianza/predicción porque si no, se ven horribles y no se entiende nada
 ml1 <- lm(estatura~peso)
 
-#Fuente de como calcular el intervalo de predicción y graficar las bandas
-#https://rpubs.com/joser/RegresionSimple
-
 #Valores predecidos para los puntos dados
 predict(ml1, pesosNuevos, interval = "predict")
 
@@ -187,8 +198,6 @@ lines(puntos$peso, ip[,3], lty = 2, col = "dodgerblue")
 ic <- predict(ml1, puntos, interval = "confidence")
 lines(puntos$peso, ic[,2], lty = 2)
 lines(puntos$peso, ic[,3], lty = 2)
-####################################################################
-#Pregunta 6
 ####################################################################
 #Pregunta 7
 ####################################################################
