@@ -6,11 +6,28 @@
 
 ####################################################################
 #Cargando el archivo del proyecto
-sales = read.table("datosproy.txt", header = TRUE)
+sales_pre = read.table("datosproy.txt", header = TRUE)
+####################################################################
+#Limpiando la data
+sales = sales_pre[-c(23,67,122),]
 ####################################################################
 #Pregunta 1
-
+sales
 summary(sales)
+
+(149 + 30.5 + 23.3 + 467.6 + 1499.7)
+
+((149 *100) / 2170.1)
+((30.5 *100) / 2170.1)
+((23.3 *100) / 2170.1)
+((47.6 *100) / 2170.1)
+((1499.7 *100) / 2170.1)
+
+(((149 *100) / 2170.1) + 
+((30.5 *100) / 2170.1) + 
+((23.3 *100) / 2170.1) + 
+((47.6 *100) / 2170.1) + 
+((1499.7 *100) / 2170.1))
 
 # Ventas
 ventas = sales$ventas
@@ -46,7 +63,7 @@ boxplot(tv,main="Caja de Tv",ylab="Tv")
 ebay = sales$ebay
 summary(ebay)
 sd(ebay)
-boxplot(ebay,main="Caja de Tv",ylab="Ebay")
+boxplot(ebay,main="Caja de Ebay",ylab="Ebay")
 
 # Region
 Region = sales$Region
@@ -56,13 +73,46 @@ boxplot(Region,main="Caja de Region",ylab="Region")
 
 #Desviaciones estandar
 sd = c(sd(ventas), sd(facebook), sd(periodico), sd(instagram), sd(tv), sd(ebay), sd(Region));
-
+sd
+#Medias
+mn = c(mean(ventas), mean(facebook), mean(periodico), mean(instagram), mean(tv), mean(ebay), mean(Region));
+mn
 #Coeficientes de variacion
+cof = sd / mn
+cof
+
+s = summary(sales)
+#Se calcula la desviacion estandar para cada una de las variables
+sd = c(format(round(sd(E6), 2), nsmall = 2),
+       format(round(sd(E5), 2), nsmall = 2),
+       format(round(sd(E4), 2), nsmall = 2),
+       format(round(sd(E3), 2), nsmall = 2),
+       format(round(sd(E2), 2), nsmall = 2),
+       format(round(sd(E1), 2), nsmall = 2),
+       format(round(sd(Y), 2), nsmall = 2))
+#Se genera la matris que contiene el resultado de summary y la desviacion estandar
+matrix = rbind(s,sd)
+
+fac = c(replicate(197,"v"), 
+        replicate(197,"f"), 
+        replicate(197,"p"), 
+        replicate(197,"i"), 
+        replicate(197,"t"), 
+        replicate(197,"e"), 
+        replicate(197,"r"))
+#Generacion del factor para la grafica
+fact = factor(fac)
+dat = c(ventas, facebook, periodico, instagram, tv, ebay, Region)
+
+#Es generada la grafica de todas las variables
+#grid(nx=10, ny=NA)
+#par(new=TRUE)
+boxplot(dat~fact,main="Caja de calificaciones",ylab="Resultados", xlab = "Examenes")
 
 # Histogramas
 hist(ventas,main="Histograma de Ventas",ylab="Frecuencia",xlab="Ventas")
 hist(facebook,main="Histograma de Facebook",ylab="Frecuencia",xlab="Facebook")
-hist(Periodico,main="Histograma de Periodico",ylab="Frecuencia",xlab="Periodico")
+hist(periodico,main="Histograma de Periodico",ylab="Frecuencia",xlab="Periodico")
 hist(instagram,main="Histograma de Instagram",ylab="Frecuencia",xlab="Instagram")
 hist(tv,main="Histograma de Tv",ylab="Frecuencia",xlab="Tv")
 hist(ebay,main="Histograma de Ebay",ylab="Frecuencia",xlab="Ebay")
@@ -194,7 +244,7 @@ predict(ml1, pesosNuevos, interval = "predict")
 plot(peso, estatura, xlab = "Peso de los estudiantes", ylab = "Estatura de los estudiantes", main = "Estatura de los estudiantes en función del peso")
 abline(ml1)
 
-#Graficamos los intervalos de predicción
+#Graficamos los intervalos de prediccion
 ip <- predict(ml1, puntos, interval = "predict")
 lines(puntos$peso, ip[,2], lty = 2, col = "dodgerblue")
 lines(puntos$peso, ip[,3], lty = 2, col = "dodgerblue") 
