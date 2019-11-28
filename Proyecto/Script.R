@@ -208,9 +208,9 @@ summary(mlm4)
 mlm5 = lm(sales$ventas ~ sales$facebook + sales$instagram)
 summary(mlm5)
 predict(mlm5,sales,interval = "prediction")
-plot(mlm5, main = "Modelo multiple 5")
-boxplot(rstandard(mlm5))
-hist(rstandard(mlm5))
+plot(mlm5, main = "Modelo multiple Y~facebook + instagram")
+boxplot(rstandard(mlm5), main = "Caja de residuales", ylab = "Residuales")
+hist(rstandard(mlm5), main="Histograma de residuales",ylab="Frecuencia",xlab="Rango")
 
 #Se eliminan los valores de la tabla que afectan la normalidad de los residuales
 sales_mod = sales[-c(128, 124, 56, 6, 77, 3, 74, 25, 186, 176, 171, 167, 164, 156, 129, 130, 101, 35, 80, 163, 133),]
@@ -220,16 +220,17 @@ sales_mod = sales[-c(128, 124, 56, 6, 77, 3, 74, 25, 186, 176, 171, 167, 164, 15
 mlm6 = lm(sales_mod$ventas ~ sales_mod$facebook + sales_mod$instagram)
 summary(mlm6)
 predict(mlm6,sales_mod,interval = "prediction")
-plot(mlm5, main = "Modelo multiple 5")
-boxplot(rstandard(mlm6))
-hist(rstandard(mlm6))
+plot(mlm6, main = "Modelo multiple Y~facebook + instagram modificado")
+boxplot(rstandard(mlm6), main = "Caja de residuales", ylab = "Residuales")
+hist(rstandard(mlm6), main="Histograma de residuales",ylab="Frecuencia",xlab="Rango")
 
 ####################################################################
 #Pregunta 5
 
 #Se obtienen las ventas de la primera region
 sales_per_region = sales$ventas[sales$Region == 1]
-
+qqnorm(sales_per_region)
+qqline(sales_per_region)
 #Se define la hipotesis nula como m0 igual a 150
 m0 = 150
 #La hipotesis alternativa sera que m0 es mayor a 150
@@ -242,14 +243,14 @@ sample_mean = mean(sales_per_region)
 standard_deviation = sd(sales_per_region)
 
 #Se calcula el estadistico Z por tratarse de una muestra grande
-#z = ((sample_mean - m0) / (standard_deviation / sqrt(n)))
-
+z = ((sample_mean - m0) / (standard_deviation / sqrt(n)))
+z
 #Se obtiene el p-valor asociado a Z
-#p_value = pnorm(Z, lower.tail=FALSE)
-#p_value
+p_value = pnorm(z, lower.tail=FALSE)
+p_value
 
 #Se realiza el estudio de las las hipotesis propuestas
-#t.test(sales_per_region, alternative = "upper", mu = 150, conf.level = 0.99)
+t.test(sales_per_region, alternative = "greater", mu = 150, conf.level = 0.95)
 ####################################################################
 #Pregunta 6
 
