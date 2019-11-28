@@ -188,21 +188,25 @@ summary(ml6)
 plot(ml6, main = "Modelo 2.6")
 ####################################################################
 #Pregunta 4
-mlm1 = lm(sales$ventas ~ sales$facebook + sales$periodico + sales$instagram + sales$tv + sales$ebay)
+mlm1 = lm(sales$ventas ~ sales$facebook + sales$periodico + sales$instagram + sales$tv + sales$ebay + sales$Region)
 summary(mlm1)
 #plot(mlm1, main = "Modelo multiple 1")
 
-mlm2 = lm(sales$ventas ~ sales$facebook + sales$periodico + sales$instagram + sales$tv)
+mlm2 = lm(sales$ventas ~ sales$facebook + sales$instagram + sales$tv + sales$ebay + sales$Region)
 summary(mlm2)
 #plot(mlm2, main = "Modelo multiple 2")
 
-mlm3 = lm(sales$ventas ~ sales$facebook + sales$periodico + sales$instagram)
+mlm3 = lm(sales$ventas ~ sales$facebook + sales$instagram + sales$tv + sales$Region)
 summary(mlm3)
 #plot(mlm3, main = "Modelo multiple 3")
 
-mlm4 = lm(sales$ventas ~ sales$facebook + sales$instagram)
+mlm4 = lm(sales$ventas ~ sales$facebook + sales$instagram + sales$Region)
 summary(mlm4)
 #plot(mlm4, main = "Modelo multiple 4")
+
+mlm5 = lm(sales$ventas ~ sales$facebook + sales$instagram)
+summary(mlm5)
+#plot(mlm5, main = "Modelo multiple 5")
 
 ####################################################################
 #Pregunta 5
