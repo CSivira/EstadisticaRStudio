@@ -50,28 +50,28 @@ plot(modeloRegion, main = "Ventas ~ Region")
 
 # El mejor modelo fue modeloInstagram, entonces se utilizara este
 # para predecir las ventas.
-modeloInstagram = lm(ventas~instagram)
+modeloFacebook = lm(ventas~facebook)
 
-nuevosPresupuestos = data.frame(pie=c(52, 58, 63, 79, 81))
+nuevosPresupuestos = data.frame(presupuestos=c(52, 58, 63, 79, 81))
 
 # Se grafican los datos
-plot(instagram, ventas)
-abline(modeloInstagram)
+plot(facebook, ventas)
+abline(modeloFacebook)
 
 # Predicción para el nuevo presupuesto asignado a publicidad
-(predict(modeloInstagram, nuevosPresupuestos, interval = 'predict'))
+(predict(modeloFacebook, nuevosPresupuestos, interval = 'predict'))
 
 # Se generan puntos para las bandas
-sequence = data.frame(instagram = seq(0, 50, 1))
+sequence = data.frame(facebook = seq(0, 300, 1))
 
 # Intervalo de predicción
-predicInstagram = predict(modeloInstagram, sequence, interval = "prediction")
-lines(sequence$instagram, predicInstagram[,2], lty = 2, col = "red")
-lines(sequence$instagram, predicInstagram[,3], lty = 2, col = "red")
+predicFacebook = predict(modeloFacebook, sequence, interval = "prediction")
+lines(sequence$facebook, predicFacebook[,2], lty = 2, col = "red")
+lines(sequence$facebook, predicFacebook[,3], lty = 2, col = "red")
 
 # Intervalo de confianza para el 95%
-confInstagram = predict(modeloInstagram, sequence, interval = "confidence")
-lines(sequence$instagram, confInstagram[,2], lty = 2, col = "blue")
-lines(sequence$instagram, confInstagram[,3], lty = 2, col = "blue")
+confFacebook = predict(modeloFacebook, sequence, interval = "confidence")
+lines(sequence$facebook, confFacebook[,2], lty = 2, col = "blue")
+lines(sequence$facebook, confFacebook[,3], lty = 2, col = "blue")
 
 ####################################################################
