@@ -204,13 +204,25 @@ mlm4 = lm(sales$ventas ~ sales$facebook + sales$instagram + sales$Region)
 summary(mlm4)
 #plot(mlm4, main = "Modelo multiple 4")
 
-sales_mod = sales[-c(128, 124, 56, 6, 77, 3, 74, 25, 186, 176, 171, 167, 164, 156, 129, 130,101,35, 80, 163, 133),]
-
-mlm5 = lm(sales_mod$ventas ~ sales_mod$facebook + sales_mod$instagram)
+#Mejor modelo consiguido. Presenta problemas en la normalidad de los residuales con datos atipicos
+mlm5 = lm(sales$ventas ~ sales$facebook + sales$instagram)
 summary(mlm5)
+predict(mlm5,sales,interval = "prediction")
 plot(mlm5, main = "Modelo multiple 5")
 boxplot(rstandard(mlm5))
 hist(rstandard(mlm5))
+
+#Se eliminan los valores de la tabla que afectan la normalidad de los residuales
+sales_mod = sales[-c(128, 124, 56, 6, 77, 3, 74, 25, 186, 176, 171, 167, 164, 156, 129, 130, 101, 35, 80, 163, 133),]
+
+#Esta modificacion del modelo anterior mejora el modelo a costa de aliminar datos de la tabla
+#Se aprecia que los residuales se encuentran bien distribuidos de forma normal.
+mlm6 = lm(sales_mod$ventas ~ sales_mod$facebook + sales_mod$instagram)
+summary(mlm6)
+predict(mlm6,sales_mod,interval = "prediction")
+plot(mlm5, main = "Modelo multiple 5")
+boxplot(rstandard(mlm6))
+hist(rstandard(mlm6))
 
 ####################################################################
 #Pregunta 5
