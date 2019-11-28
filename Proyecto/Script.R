@@ -24,10 +24,10 @@ summary(sales)
 ((1499.7 *100) / 2170.1)
 
 (((149 *100) / 2170.1) + 
-((30.5 *100) / 2170.1) + 
-((23.3 *100) / 2170.1) + 
-((47.6 *100) / 2170.1) + 
-((1499.7 *100) / 2170.1))
+                ((30.5 *100) / 2170.1) + 
+                ((23.3 *100) / 2170.1) + 
+                ((47.6 *100) / 2170.1) + 
+                ((1499.7 *100) / 2170.1))
 
 # Ventas
 ventas = sales$ventas
@@ -144,43 +144,46 @@ t.test(sales_per_region, conf.level = 0.95)$conf.int
 
 ####################################################################
 #Pregunta 3
+# Encuentre el modelo de regresion simple que mejor se ajuste a
+# los datos; realice las pruebas estadisticas que considere conveniente
+# para justificar su respuesta, incluyendo un analisis de residuales.
 
-#1era posible variable independiente: facebook
+#Facebook
 ml1 = lm(sales$ventas ~ sales$facebook)
 plot(sales$facebook, sales$ventas, main = "Ventas en función de la publicidad en Facebook", xlab = "Publicidad en Facebook", ylab = "Ventas")
 abline(ml1)
 summary(ml1)
 plot(ml1, main = "Modelo 2.1")
 
-#2da posible variable independiente: periodico
+#Periodico
 ml2 = lm(sales$ventas ~ sales$periodico)
 plot(sales$periodico, sales$ventas, main = "Ventas en función de la publicidad en Periodico", xlab = "Publicidad en Periodico", ylab = "Ventas")
 abline(ml2)
 summary(ml2)
 plot(ml2, main = "Modelo 2.2")
 
-#3era posible variable independiente: instagram
+#Instagram
 ml3 = lm(sales$ventas ~ sales$instagram)
 plot(sales$instagram, sales$ventas, main = "Ventas en función de la publicidad en Instagram", xlab = "Publicidad en Instagram", ylab = "Ventas")
 abline(ml3)
 summary(ml3)
 plot(ml3, main = "Modelo 2.3")
 
-#4ta posible variable independiente: tv
+#Tv
 ml4 = lm(sales$ventas ~ sales$tv)
 plot(sales$tv, sales$ventas, main = "Ventas en función de la publicidad en TV", xlab = "Publicidad en Television", ylab = "Ventas")
 abline(ml4)
 summary(ml4)
 plot(ml4, main = "Modelo 2.4")
 
-#5ta posible variable independiente: ebay
+#Ebay
 ml5 = lm(sales$ventas ~ sales$ebay)
 plot(sales$ebay, sales$ventas, main = "Ventas en función de la publicidad en Ebay", xlab = "Publicidad en Ebay", ylab = "Ventas")
 abline(ml5)
 summary(ml5)
 plot(ml5, main = "Modelo 2.5")
 
-#6ta posible variable independiente: region
+#Region
 ml6 = lm(sales$ventas ~ sales$Region)
 plot(sales$Region, sales$ventas, main = "Ventas en función de la Region", xlab = "Publicidad en FB", ylab = "Ventas")
 abline(ml6)
@@ -253,28 +256,43 @@ p_value
 t.test(sales_per_region, alternative = "greater", mu = 150, conf.level = 0.95)
 ####################################################################
 #Pregunta 6
+# Para el modelo de regresión lineal simple obtenido en el
+# inciso 3, realice la predicción correspondiente para 5 ventas
+# que se anexan a la muestra, los datos se presentan en el Cuadro 1.
+# Grafique los intervalos de predicción y de confianza
+# respectivamente. Realice el análisis respectivo.
 
-pesosNuevos <- data.frame(peso = c(43, 55, 70, 90, 65))
-puntos<- data.frame(peso = seq(min(peso), max(peso), by = 0.5)) #Necesitamos para las bandas de confianza/predicción porque si no, se ven horribles y no se entiende nada
-ml1 <- lm(estatura~peso)
+# El mejor modelo fue modeloFacebook o ml1, entonces se utilizara este
+# para predecir las ventas.
+modeloFacebook = lm(ventas~facebook)
 
-#Valores predecidos para los puntos dados
-predict(ml1, pesosNuevos, interval = "predict")
+nuevosPresupuestos = data.frame(facebook=c(300, 320, 338, 350, 400))
 
-#Graficamos el modelo y las bandas de confianza/predicción para un 95% de confianza
-plot(peso, estatura, xlab = "Peso de los estudiantes", ylab = "Estatura de los estudiantes", main = "Estatura de los estudiantes en función del peso")
-abline(ml1)
+# Se grafica el modelo y las bandas de confianza/predicción
+plot(facebook, ventas, main="Intervalos para el modelo ventas~facebook", xlab = "Presupuesto asignado a Facebook")
+abline(modeloFacebook)
 
-#Graficamos los intervalos de prediccion
-ip <- predict(ml1, puntos, interval = "predict")
-lines(puntos$peso, ip[,2], lty = 2, col = "dodgerblue")
-lines(puntos$peso, ip[,3], lty = 2, col = "dodgerblue") 
+# Predicción para el nuevo presupuesto asignado a publicidad
+(predict(modeloFacebook, nuevosPresupuestos, interval = 'predict'))
 
-#Graficamos los intervalos de confianza
-ic <- predict(ml1, puntos, interval = "confidence")
-lines(puntos$peso, ic[,2], lty = 2)
-lines(puntos$peso, ic[,3], lty = 2)
+# Se generan puntos para las bandas
+sequence = data.frame(facebook = seq(0, 300, 1))
+
+# Intervalo de predicción
+predicFacebook = predict(modeloFacebook, sequence, interval = "prediction")
+lines(sequence$facebook, predicFacebook[,2], lty = 2, col = "red")
+lines(sequence$facebook, predicFacebook[,3], lty = 2, col = "red")
+
+# Intervalo de confianza para el 95%
+confFacebook = predict(modeloFacebook, sequence, interval = "confidence")
+lines(sequence$facebook, confFacebook[,2], lty = 2, col = "blue")
+lines(sequence$facebook, confFacebook[,3], lty = 2, col = "blue")
+
+# Se agrega una leyenda
+legend("topleft", legend=c("Interv. Predicción", "Interv. Confianza para 95%"),
+       col=c("red", "blue"), lty=2:2, cex=0.8)
 ####################################################################
+
 #Pregunta 7
 ####################################################################
 #Pregunta 8
