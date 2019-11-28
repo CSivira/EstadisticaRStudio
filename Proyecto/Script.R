@@ -204,9 +204,13 @@ mlm4 = lm(sales$ventas ~ sales$facebook + sales$instagram + sales$Region)
 summary(mlm4)
 #plot(mlm4, main = "Modelo multiple 4")
 
-mlm5 = lm(sales$ventas ~ sales$facebook + sales$instagram)
+sales_mod = sales[-c(128, 124, 56, 6, 77, 3, 74, 25, 186, 176, 171, 167, 164, 156, 129, 130,101,35, 80, 163, 133),]
+
+mlm5 = lm(sales_mod$ventas ~ sales_mod$facebook + sales_mod$instagram)
 summary(mlm5)
-#plot(mlm5, main = "Modelo multiple 5")
+plot(mlm5, main = "Modelo multiple 5")
+boxplot(rstandard(mlm5))
+hist(rstandard(mlm5))
 
 ####################################################################
 #Pregunta 5
