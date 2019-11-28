@@ -229,13 +229,12 @@ hist(rstandard(mlm6), main="Histograma de residuales",ylab="Frecuencia",xlab="Ra
 
 #Se obtienen las ventas de la primera region
 sales_per_region = sales$ventas[sales$Region == 1]
-qqnorm(sales_per_region)
-qqline(sales_per_region)
+
 #Se define la hipotesis nula como m0 igual a 150
 m0 = 150
 #La hipotesis alternativa sera que m0 es mayor a 150
 
-#Se obtiene el tama?o de la muestra (grande 49>30)
+#Se obtiene el tamano de la muestra (grande 49>30)
 n = length(sales_per_region)
 #Se obtiene la media de la muestra
 sample_mean = mean(sales_per_region)
@@ -251,6 +250,18 @@ p_value
 
 #Se realiza el estudio de las las hipotesis propuestas
 t.test(sales_per_region, alternative = "greater", mu = 150, conf.level = 0.95)
+
+
+#Seccion de observacion en el informe
+#Estudio de la prueba de hipotesis para cola inferior
+z = ((sample_mean - m0) / (standard_deviation / sqrt(n)))
+z
+#Se obtiene el p-valor asociado a Z
+p_value = pnorm(z, lower.tail=TRUE)
+p_value
+
+#Se realiza el estudio de las las hipotesis propuestas
+t.test(sales_per_region, alternative = "less", mu = 15, conf.level = 0.95)
 ####################################################################
 #Pregunta 6
 
