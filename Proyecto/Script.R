@@ -134,42 +134,42 @@ ml1 = lm(sales$ventas ~ sales$facebook)
 plot(sales$facebook, sales$ventas, main = "Ventas en funcion de la publicidad en Facebook", xlab = "Publicidad en Facebook", ylab = "Ventas")
 abline(ml1)
 summary(ml1)
-plot(ml1, main = "Modelo 2.1")
+plot(ml1, main = "Ventas ~ Facebook")
 
 # Periodico
 ml2 = lm(sales$ventas ~ sales$periodico)
 plot(sales$periodico, sales$ventas, main = "Ventas en funcion de la publicidad en Periodico", xlab = "Publicidad en Periodico", ylab = "Ventas")
 abline(ml2)
 summary(ml2)
-plot(ml2, main = "Modelo 2.2")
+plot(ml2, main = "Ventas ~ Periodico")
 
 # Instagram
 ml3 = lm(sales$ventas ~ sales$instagram)
 plot(sales$instagram, sales$ventas, main = "Ventas en funcion de la publicidad en Instagram", xlab = "Publicidad en Instagram", ylab = "Ventas")
 abline(ml3)
 summary(ml3)
-plot(ml3, main = "Modelo 2.3")
+plot(ml3, main = "Ventas ~ Instagram")
 
 # Tv
 ml4 = lm(sales$ventas ~ sales$tv)
 plot(sales$tv, sales$ventas, main = "Ventas en funcion de la publicidad en TV", xlab = "Publicidad en Television", ylab = "Ventas")
 abline(ml4)
 summary(ml4)
-plot(ml4, main = "Modelo 2.4")
+plot(ml4, main = "Ventas ~ Tv")
 
 # Ebay
 ml5 = lm(sales$ventas ~ sales$ebay)
 plot(sales$ebay, sales$ventas, main = "Ventas en funcion de la publicidad en Ebay", xlab = "Publicidad en Ebay", ylab = "Ventas")
 abline(ml5)
 summary(ml5)
-plot(ml5, main = "Modelo 2.5")
+plot(ml5, main = "Ventas ~ Ebay")
 
 # Region
 ml6 = lm(sales$ventas ~ sales$Region)
 plot(sales$Region, sales$ventas, main = "Ventas en funcion de la Region", xlab = "Publicidad en FB", ylab = "Ventas")
 abline(ml6)
 summary(ml6)
-plot(ml6, main = "Modelo 2.6")
+plot(ml6, main = "Ventas ~ Region")
 
 ####################################################################
 # Pregunta 4
