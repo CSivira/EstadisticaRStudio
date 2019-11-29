@@ -105,7 +105,7 @@ sales.cor
 ####################################################################
 # Pregunta 2
 # Calcular el intervalo de confianza del 95% para las medias de ventas por 
-# regi�n. Discuta los resultados.
+# region. Discuta los resultados.
 
 # Calculo del intervalo de confianza para la media de ventas en la region 1
 sales_per_region = sales$ventas[sales$Region == 1]
@@ -306,10 +306,10 @@ legend("topleft", legend=c("Interv. Prediccion", "Interv. Confianza para 95%"),
 
 ####################################################################
 # Pregunta 7
-# �Existe suficiente evidencia que permita concluir que las ventas media 
-# de las variables de estudio difieren con respecto a las regiones? Use 
-# el procedimiento de an�lisis de varianza para un dise�o de un factor.
-# �Qu� concluir�a usted con un nivel de significancia ?? = 0.03?
+# Existe suficiente evidencia que permita concluir que las ventas media 
+# de las variables de estudio difieren con respecto a las regiones. Use 
+# el procedimiento de analisis de varianza para un diseno de un factor.
+# Que concluiria usted con un nivel de significancia alpha = 0.03
 
 # H0: Las medias de ventas entre las regiones son iguales
 dat=sales$ventas
@@ -318,7 +318,7 @@ tapply(dat,fact,mean)
 boxplot(dat~fact, main = "Caja de regiones", xlab = "Regiones", ylab= "Ventas")
 
 # Se observa que los valores de Q2 son cercanos entre si, 
-# de manera que las medias de cada regi�n se encuentran dentro del 
+# de manera que las medias de cada region se encuentran dentro del 
 # rango intercuartil resto de las regiones, los cuales son similares entre si.
 mod.lm=lm(dat~fact)
 anova(mod.lm)
