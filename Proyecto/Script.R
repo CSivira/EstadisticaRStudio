@@ -9,7 +9,7 @@
 sales_pre = read.table("datosproy.txt", header = TRUE)
 
 ####################################################################
-# Limpieza la data
+# Limpieza de la data
 sales = sales_pre[-c(23,67,122),]
 
 ####################################################################
@@ -24,7 +24,7 @@ summary(sales)
 ventas = sales$ventas
 summary(ventas)
 sd(ventas)
-boxplot(ventas,main="Caja de Ventas", ylab= "Ganancias")
+boxplot(ventas,main="Caja de Ventas", ylab= "Numero de productos vendidos")
 
 # Facebook
 facebook = sales$facebook
@@ -75,13 +75,13 @@ cof = sd / mn
 cof
 
 # Generacion del factor para la grafica
-fc = c(replicate(197,"ventas"), 
-        replicate(197,"facebook"), 
-        replicate(197,"periodico"), 
-        replicate(197,"instagram"), 
-        replicate(197,"tv"), 
-        replicate(197,"ebay"), 
-        replicate(197,"region"))
+fc = c(replicate(length(sales$ventas),"ventas"), 
+        replicate(length(sales$ventas),"facebook"), 
+        replicate(length(sales$ventas),"periodico"), 
+        replicate(length(sales$ventas),"instagram"), 
+        replicate(length(sales$ventas),"tv"), 
+        replicate(length(sales$ventas),"ebay"), 
+        replicate(length(sales$ventas),"region"))
 fct = factor(fc)
 dt = c(ventas, facebook, periodico, instagram, tv, ebay, Region)
 
@@ -288,7 +288,7 @@ abline(modeloFacebook)
 (predict(modeloFacebook, nuevosPresupuestos, interval = 'predict'))
 
 # Se generan puntos para las bandas
-sequence = data.frame(facebook = seq(0, 300, 1))
+sequence = data.frame(facebook = seq(min(facebook), max(facebook), 1))
 
 # Intervalo de prediccion
 predicFacebook = predict(modeloFacebook, sequence, interval = "prediction")
